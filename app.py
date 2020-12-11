@@ -23,6 +23,18 @@ def upload_file():
                                class_name=class_name)
     return render_template('index.html')
 
+@app.route('/predict', methods=['POST'])
+def predict():
+    if request.method == 'POST':
+        file = request.files['file']
+        img_bytes = file.read()
+        class_name = get_prediction(image_bytes=img_bytes)
+        return jsonify({'class_name': class_name})
+
+@app.route('/test', methods=['GET'])
+def test():
+    return jsonify({'hello':'test success'})
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=int(os.environ.get('PORT', 5000)))

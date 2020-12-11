@@ -7,7 +7,7 @@ import torchvision.transforms as transforms
 
 
 def get_model():
-    model = pt.load("MaskTypeClassifier_90_87.pth", map_location=pt.device("cpu"))
+    model = pt.load("MaskTypeClassifier_90_87.pth", map_location="cpu")
     model.eval()
     return model
 
